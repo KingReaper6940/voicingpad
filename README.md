@@ -1,5 +1,7 @@
 # Voicingpad
 
+[Open Voicingpad](https://voicingpad.vercel.app)
+
 A small, browser-local notebook for the guitar shape you actually play. Capture six string positions, add finger labels and reminders, arrange your cards, and export a clean SVG board.
 
 ![Example generated voicing board](examples/board.svg)
@@ -131,7 +133,7 @@ No automatic chord naming, chord-library lookup, audio playback, rhythm sequenci
 
 Actual application handlers are tested in **simulated DOM**: separate draft preservation, rejected shapes, selection and history boundaries, copy/download payloads, current Blob URL attributes and revocation, malformed UTF-8, undoable file recovery and overlapping file reads.
 
-CI runs tests and build on Windows/Linux with Node 22/24. Simulated DOM and SVG parsing do not verify native browser image rendering, responsive appearance, assistive-technology behavior, clipboard permissions, native file destinations, physical printing or compatibility with a specific design app. Native browser checks and an editor screenshot remain pending.
+CI runs tests and build on Windows/Linux with Node 22/24. The Checks workflow also supports manual runs from GitHub Actions. Simulated DOM and SVG parsing do not verify native browser image rendering, responsive appearance, assistive-technology behavior, clipboard permissions, native file destinations, physical printing or compatibility with a specific design app. Native browser checks and an editor screenshot remain pending.
 
 ## Deploy on Vercel
 
