@@ -5,7 +5,7 @@ function fields(obj,keys){if(!obj||typeof obj!=='object'||Array.isArray(obj)||Ob
 export function windowFor(frets){
  const positive=frets.filter(f=>f!==null&&f>0),min=positive.length?Math.min(...positive):1,max=positive.length?Math.max(...positive):1;
  if(max-min>4)throw Error('Fretted notes must fit within five consecutive frets. Open and muted strings do not affect the window.');
- return {start:max<=5?1:min,rows:5};
+ return {start:max<=5?1:Math.min(min,20),rows:5};
 }
 export function validateCard(c){
  fields(c,['id','name','note','frets','fingers']);

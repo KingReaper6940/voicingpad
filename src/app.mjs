@@ -1,4 +1,5 @@
 import {History} from './edit.mjs';import {example} from './example.mjs';import {clone,parseFrets,parseFingers,fretText,fingerText} from './model.mjs';import {noteName,parseTuning,sounding,receipt} from './pitch.mjs';import {cardSvg,boardSvg} from './diagram.mjs';
+import {attachFiles} from './handoff.mjs';
 export function mount(doc,env={}){
  const $=id=>doc.getElementById(id),history=new History(example),urlApi=env.URL??globalThis.URL,urls=new Map();
  let selected=history.current.cards[0].id,cardDraft=false,settingsDraft=false,revision=0;
@@ -63,6 +64,7 @@ export function mount(doc,env={}){
  $('example').addEventListener('click',()=>load(example));
  $('copy-shape').addEventListener('click',async()=>{try{await (env.clipboard??globalThis.navigator.clipboard).writeText(fretText(card()));say('Applied fret entry copied.');}catch{say('Clipboard unavailable. Copy the fret entry from the editor after discarding any draft.',true);}});
  render();
- return {history,load,say,get revision(){return revision;},get selected(){return selected;},dispose(){for(const url of urls.values())urlApi.revokeObjectURL(url);urls.clear();}};
+ const app={history,load,say,get revision(){return revision;},get selected(){return selected;},dispose(){for(const url of urls.values())urlApi.revokeObjectURL(url);urls.clear();}};
+ attachFiles(doc,app);return app;
 }
 if(typeof document!=='undefined')mount(document);
